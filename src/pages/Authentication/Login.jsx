@@ -3,6 +3,8 @@ import { ErrorMessage, Field, Formik, Form } from 'formik';
 import { TextField } from '@mui/material';
 import * as Yup from 'yup';
 import { Button } from '@mui/material';
+import { useDispatch } from 'react-redux';
+import { loginUserAction } from '../../Redux/Auth/auth.action';
 
 const initialValues = { email: '', password: '' };
 
@@ -14,8 +16,13 @@ const validationSchema = Yup.object({
 export const Login = () => {
   const [formValue, setFormValue] = useState();
 
+  const dispatch=useDispatch();
+
+
   const handleSubmit = (values) => {
     console.log('handle submit', values);
+
+    dispatch(loginUserAction({data:values}))
   };
 
   return (
